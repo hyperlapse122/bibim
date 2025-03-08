@@ -21,13 +21,19 @@ const config = {
     format: 'esm',
     sourcemap: true,
   },
-  plugins: [commonjs(), resolve(), nodeExternals(), json(), esbuild({
-    target: 'esnext',
-    treeShaking: true,
-    minify: true,
-    sourceMap: true,
-    tsconfig: './tsconfig.json',
-  })],
+  plugins: [
+    commonjs(),
+    resolve(),
+    nodeExternals(),
+    json(),
+    esbuild({
+      target: 'esnext',
+      treeShaking: true,
+      minify: true,
+      sourceMap: true,
+      tsconfig: './tsconfig.json',
+    }),
+  ],
 };
 
 export default config;

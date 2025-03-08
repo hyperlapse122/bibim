@@ -5,16 +5,10 @@
   "type": "module",
   "exports": {
     "./base": {
-      "types": "./dist/types/base.d.ts",
-      "require": "./dist/cjs/base.js",
-      "import": "./dist/esm/base.js",
-      "default": "./dist/esm/base.js"
+      "default": "./src/base.js"
     }
   },
   "scripts": {
-    "dev": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json --watch",
-    "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
-    "postinstall": "yarn build",
     "format": "prettier -w .",
     "lint": "eslint"
   },

@@ -1,16 +1,22 @@
 # syntax=docker.io/docker/dockerfile:1.7-labs
+FROM --platform=$BUILDPLATFORM node:22-alpine AS build-base
 FROM node:22-alpine AS base
 
-FROM base AS deps
-RUN apk add --no-cache libc6-compat protoc g++ make py3-pip
+FROM build-base AS deps
 WORKDIR /app
 
+RUN apk add --no-cache libc6-compat protoc g++ make py3-pip
+
 COPY ./out/json .
-RUN yarn --immutable
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn --immutable
 
-FROM deps AS deps-prod
+FROM base AS deps-prod
+WORKDIR /app
 
-RUN yarn workspaces focus -A --production
+RUN apk add --no-cache libc6-compat protoc g++ make py3-pip
+
+COPY ./out/json .
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn --immutable && yarn workspaces focus -A --production
 
 FROM base AS builder
 WORKDIR /app
@@ -22,7 +28,7 @@ COPY ./out/full .
 
 RUN yarn turbo run --cache=local:r,remote:r "@bibim/audio-loader#build"
 
-FROM base AS runner
+FROM build-base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -36,6 +42,7 @@ COPY --from=builder --chown=nodejs:nodejs /app/apps/audio-loader/dist ./dist
 USER nodejs
 
 ENV PORT=3000
+ENV BIBIM_USE_HTTP2=true
 ENV NODE_ENV=production
 ENV DISCORD_TOKEN=''
 ENV DISCORD_CLIENT_ID=''
