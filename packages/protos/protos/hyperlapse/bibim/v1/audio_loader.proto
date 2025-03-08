@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package hyperlapse.bibim.v1;
+
+message DownloadAudioRequest {
+  string url = 1;
+}
+
+message DownloadAudioResponse {
+  bytes audio = 1;
+}
+
+service AudioLoaderService {
+  rpc DownloadAudio(DownloadAudioRequest) returns (stream DownloadAudioResponse) {}
+}

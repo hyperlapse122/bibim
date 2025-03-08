@@ -1,0 +1,36 @@
+{
+  "name": "@bibim/audio-loader",
+  "packageManager": "yarn@4.7.0",
+  "type": "module",
+  "private": true,
+  "prettier": "@bibim/prettier-config",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint",
+    "format": "prettier -w ."
+  },
+  "dependencies": {
+    "@bibim/protos": "workspace:^",
+    "@bufbuild/protobuf": "^2.2.3",
+    "@connectrpc/connect": "^2.0.2",
+    "@connectrpc/connect-fastify": "^2.0.2",
+    "@connectrpc/connect-node": "^2.0.2",
+    "fastify": "^5.2.1",
+    "ts-pattern": "^5.6.2"
+  },
+  "devDependencies": {
+    "@bibim/eslint-config": "workspace:^",
+    "@bibim/prettier-config": "workspace:^",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@types/node": "^22.13.10",
+    "esbuild": "^0.25.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-sql": "0.18.1",
+    "prettier-plugin-toml": "2.0.2",
+    "rollup": "^4.35.0",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-node-externals": "^8.0.0"
+  }
+}

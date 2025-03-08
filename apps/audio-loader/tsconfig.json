@@ -4,7 +4,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "declaration": false,
     "declarationMap": false,
     "sourceMap": true,
@@ -13,8 +13,14 @@
     "strict": true,
     "skipLibCheck": true,
     "rootDir": "./src",
-    "noEmit": true,
-    "types": ["node"]
+    "outDir": "./dist",
+    "noEmit": false,
+    "types": [
+      "node"
+    ],
+    "verbatimModuleSyntax": true
   },
-  "include": ["./src/**/*"]
+  "include": [
+    "./src/**/*"
+  ]
 }
