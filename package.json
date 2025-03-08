@@ -3,17 +3,19 @@
   "packageManager": "yarn@4.7.0",
   "type": "module",
   "scripts": {
-    "foramt": "turbo run format format:root",
+    "format": "turbo run format format:root",
     "format:root": "prettier -w .",
     "lint": "turbo run lint lint:root",
-    "lint:root": "exit 0"
+    "lint:root": "eslint"
   },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "devDependencies": {
+    "@bibim/eslint-config": "workspace:^",
     "@bibim/prettier-config": "workspace:^",
+    "eslint": "9.22.0",
     "prettier": "3.5.3",
     "turbo": "^2.4.4"
   }
