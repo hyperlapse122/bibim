@@ -1,0 +1,11 @@
+{
+  "name": "bibim",
+  "packageManager": "yarn@4.7.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.4.4"
+  }
+}
