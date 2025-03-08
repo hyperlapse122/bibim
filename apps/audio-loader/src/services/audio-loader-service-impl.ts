@@ -4,6 +4,7 @@ import { AudioLoaderService, type DownloadAudioRequest } from '@bibim/protos/v1/
 export class AudioLoaderServiceImpl
   implements ServiceImpl<typeof AudioLoaderService> {
   async* downloadAudio(req: DownloadAudioRequest) {
+    console.log(req);
     yield {
       audio: new Uint8Array(),
     };

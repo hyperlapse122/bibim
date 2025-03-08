@@ -11,7 +11,7 @@ env:
 jobs:
   audio-loader:
     env:
-      IMAGE_NAME: ${{ github.repository }}/audio-loader
+      IMAGE_NAME: ${{ github.repository }}-audio-loader
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -56,6 +56,6 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
