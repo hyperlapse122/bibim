@@ -3,6 +3,7 @@
   "packageManager": "yarn@4.7.0",
   "type": "module",
   "scripts": {
+    "build": "turbo run build",
     "format": "turbo run format format:root",
     "format:root": "prettier -w .",
     "lint": "turbo run lint lint:root",
