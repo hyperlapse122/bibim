@@ -7,7 +7,8 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "start": "node ./dist/server.js"
   },
   "dependencies": {
     "@bibim/protos": "workspace:^",

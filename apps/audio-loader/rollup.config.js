@@ -15,12 +15,14 @@ import nodeExternals from 'rollup-plugin-node-externals';
  * @property {Array} plugins - An array of plugins used during the build process.
  */
 const config = {
-  input: 'src/server.ts',
-  output: {
-    file: 'dist/server.js',
-    format: 'esm',
-    sourcemap: true,
-  },
+  input: ['src/server.ts'],
+  output: [
+    {
+      file: 'dist/server.js',
+      format: 'esm',
+      sourcemap: true,
+    },
+  ],
   plugins: [
     commonjs(),
     resolve(),

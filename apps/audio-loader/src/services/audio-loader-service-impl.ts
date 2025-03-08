@@ -5,8 +5,11 @@ export class AudioLoaderServiceImpl
   implements ServiceImpl<typeof AudioLoaderService> {
   async* downloadAudio(req: DownloadAudioRequest) {
     console.log(req);
-    yield {
-      audio: new Uint8Array(),
-    };
+    for (let i = 0; i < 100; i++) {
+      yield {
+        audio: new Uint8Array(),
+        chunkId: BigInt(i),
+      };
+    }
   }
 }

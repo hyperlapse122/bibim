@@ -1,0 +1,13 @@
+{
+  "name": "audio-loader-tester",
+  "packageManager": "yarn@4.7.0",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "@bibim/protos": "workspace:^",
+    "@bufbuild/protobuf": "^2.2.3",
+    "@connectrpc/connect": "^2.0.2",
+    "@connectrpc/connect-node": "^2.0.2"
+  }
+}
