@@ -1,0 +1,27 @@
+{
+  "name": "@bibim/protos",
+  "packageManager": "yarn@4.7.0",
+  "type": "module",
+  "scripts": {
+    "lint": "buf lint && eslint",
+    "generate": "buf generate",
+    "build": "yarn generate && tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json"
+  },
+  "exports": {
+    "./v1/*": {
+      "types": "./dist/types/hyperlapse/bibim/v1/*.d.ts",
+      "require": "./dist/cjs/hyperlapse/bibim/v1/*.js",
+      "import": "./dist/esm/hyperlapse/bibim/v1/*.js",
+      "default": "./dist/esm/hyperlapse/bibim/v1/*.js"
+    }
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.2.3"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.50.0",
+    "@bufbuild/protoc-gen-es": "^2.2.3",
+    "@connectrpc/protoc-gen-connect-query": "^2.0.1",
+    "typescript": "^5.8.2"
+  }
+}
