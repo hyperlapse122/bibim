@@ -3,9 +3,9 @@
   "packageManager": "yarn@4.7.0",
   "type": "module",
   "scripts": {
-    "lint": "buf lint && eslint",
-    "generate": "buf generate",
-    "build": "yarn generate && tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json"
+    "lint": "buf lint",
+    "format": "buf format -w",
+    "build": "buf generate && tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json"
   },
   "exports": {
     "./v1/*": {
