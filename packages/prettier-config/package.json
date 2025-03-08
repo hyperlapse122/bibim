@@ -1,0 +1,31 @@
+{
+  "name": "@bibim/prettier-config",
+  "packageManager": "yarn@4.7.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json --watch",
+    "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "postinstall": "yarn build",
+    "format": "prettier -w ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "prettier": "3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "prettier": "*"
+  },
+  "dependencies": {
+    "prettier-plugin-sql": "0.18.1",
+    "prettier-plugin-toml": "2.0.2"
+  }
+}
