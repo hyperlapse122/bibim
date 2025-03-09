@@ -1,6 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-node';
 import { AudioLoaderService } from '@bibim/protos/v1/audio_loader_pb';
+import fs from 'node:fs';
 
 const transport = createConnectTransport({
   baseUrl: 'http://localhost:8080',
@@ -8,19 +9,24 @@ const transport = createConnectTransport({
 });
 
 async function main() {
-  /**
-   @type {import('@connectrpc/connect').Client<typeof AudioLoaderService>}
-   */
   const client = createClient(AudioLoaderService, transport);
 
-  /**
-   *
-   * @type {AsyncIterable<import('@connectrpc/connect').MessageShape<import('@bibim/protos/v1/audio_loader_pb').DownloadAudioResponse>>}
-   */
-  const res = (await client.downloadAudio({ url: 'https://www.youtube.com/watch?v=zi7-jk4LdX0' }));
+  const res = client.downloadAudio({
+    url: 'https://www.youtube.com/watch?v=ZlRYeom9Szc',
+  });
+
+  const fileStream = fs.createWriteStream('test.ogg');
 
   for await (const message of res) {
-    console.log(message);
+    await new Promise<void>((resolve, reject) =>
+      fileStream.write(message.audio, 'binary', (e) => {
+        if (e) {
+          reject(e);
+          return;
+        }
+        resolve();
+      }),
+    );
   }
 }
 
