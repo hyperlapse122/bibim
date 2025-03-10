@@ -1,6 +1,9 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-node';
-import { AudioLoaderService } from '@bibim/protos/v1/audio_loader_pb';
+import {
+  AudioFormat,
+  AudioLoaderService,
+} from '@bibim/protos/v1/audio_loader_pb';
 import fs from 'node:fs';
 
 const baseUrl = process.env.API_URL || 'http://localhost:8080';
@@ -14,11 +17,12 @@ async function main() {
 
   const res = client.downloadAudio({
     url: 'https://www.youtube.com/watch?v=ZlRYeom9Szc',
+    format: AudioFormat.OPUS,
   });
 
   const outputFile = process.argv[3] || 'test.ogg';
   const fileStream = fs.createWriteStream(outputFile);
-  
+
   try {
     for await (const message of res) {
       await new Promise<void>((resolve, reject) =>
