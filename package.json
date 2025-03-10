@@ -9,7 +9,8 @@
     "format": "turbo run format format:root",
     "format:root": "prettier -w .",
     "lint": "turbo run lint lint:root",
-    "lint:root": "eslint"
+    "lint:root": "eslint",
+    "migrate": "turbo run migrate"
   },
   "workspaces": [
     "apps/*",
