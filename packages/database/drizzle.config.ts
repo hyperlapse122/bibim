@@ -9,11 +9,11 @@ export default defineConfig({
   out: './drizzle',
   schema: './src/schemas/*.ts',
   dialect: 'postgresql',
-  dialect: 'postgresql',
   dbCredentials: {
--    url: process.env.DATABASE_URL!,
-+    url: process.env.DATABASE_URL || (() => {
-+      throw new Error('DATABASE_URL environment variable is required');
-+    })(),
+    url:
+      process.env.DATABASE_URL ||
+      (() => {
+        throw new Error('DATABASE_URL environment variable is required');
+      })(),
   },
 });
