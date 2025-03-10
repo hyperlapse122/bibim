@@ -1,4 +1,4 @@
-import baseConfig from './dist/esm/base.js';
+import baseConfig from './src/base.js';
 
 const config = [
   ...baseConfig,

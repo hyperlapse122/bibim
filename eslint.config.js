@@ -10,6 +10,7 @@ const config = [
       '.yarn/*',
       '.turbo/*',
       '.idea/*',
+      'out/*',
     ],
   },
 ];

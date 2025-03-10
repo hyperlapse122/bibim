@@ -1,9 +1,8 @@
-import { Linter } from 'eslint';
 import eslintJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
-const config: Linter.Config[] = [
+const config = [
   eslintJs.configs.recommended,
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,

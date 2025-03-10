@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "buf lint",
     "format": "buf format -w",
-    "build": "buf generate && tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json"
+    "build": "rimraf gen dist && buf generate && tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json"
   },
   "exports": {
     "./v1/*": {
@@ -22,6 +22,7 @@
     "@bufbuild/buf": "^1.50.0",
     "@bufbuild/protoc-gen-es": "^2.2.3",
     "@connectrpc/protoc-gen-connect-query": "^2.0.1",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.2"
   }
 }

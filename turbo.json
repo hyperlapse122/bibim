@@ -4,7 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*", "protos/**"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "protos/**", "!*.iml"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "gen/**"]
     },
     "lint": {
@@ -21,6 +21,10 @@
     },
     "//#format:root": {
       "cache": false
+    },
+    "migrate": {
+      "cache": false,
+      "passThroughEnv": ["DATABASE_URL"]
     },
     "dev": {
       "cache": false,
