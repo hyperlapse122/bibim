@@ -1,5 +1,11 @@
-import type { HandlerContext, ServiceImpl } from '@connectrpc/connect';
 import {
+  Code,
+  ConnectError,
+  type HandlerContext,
+  type ServiceImpl,
+} from '@connectrpc/connect';
+import {
+  AudioFormat,
   AudioLoaderService,
   type DownloadAudioRequest,
   DownloadAudioResponseSchema,
@@ -14,9 +20,15 @@ export class AudioLoaderServiceImpl
   implements ServiceImpl<typeof AudioLoaderService>
 {
   async *downloadAudio(
-    { url }: DownloadAudioRequest,
+    { url, format }: DownloadAudioRequest,
     {}: HandlerContext,
   ): AsyncIterable<MessageInitShape<typeof DownloadAudioResponseSchema>> {
+    if (format === AudioFormat.UNSPECIFIED)
+      throw new ConnectError(
+        'Audio format is not specified',
+        Code.InvalidArgument,
+      );
+
     try {
       const ytDlpProcess = spawn('yt-dlp', ['-f', 'bestaudio', '-o', '-', url]);
 
