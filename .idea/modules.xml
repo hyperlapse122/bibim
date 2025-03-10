@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/apps/audio-loader/audio-loader.iml" filepath="$PROJECT_DIR$/apps/audio-loader/audio-loader.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/bibim.iml" filepath="$PROJECT_DIR$/.idea/bibim.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/database/database.iml" filepath="$PROJECT_DIR$/packages/database/database.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/eslint-config/eslint-config.iml" filepath="$PROJECT_DIR$/packages/eslint-config/eslint-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/prettier-config/prettier-config.iml" filepath="$PROJECT_DIR$/packages/prettier-config/prettier-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/protos/protos.iml" filepath="$PROJECT_DIR$/packages/protos/protos.iml" />

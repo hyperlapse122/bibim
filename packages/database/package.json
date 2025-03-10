@@ -1,0 +1,59 @@
+{
+  "name": "@bibim/database",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.7.0",
+  "prettier": "@bibim/prettier-config",
+  "scripts": {
+    "format": "prettier -w .",
+    "lint": "eslint",
+    "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate"
+  },
+  "exports": {
+    "./schemas/*": {
+      "require": "./dist/cjs/schemas/*.d.ts",
+      "import": "./dist/esm/schemas/*.d.ts",
+      "types": "./dist/types/schemas/*.d.ts",
+      "default": "./dist/esm/schemas/*.js"
+    }
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.40.0"
+  },
+  "devDependencies": {
+    "@bibim/eslint-config": "workspace:^",
+    "@bibim/prettier-config": "workspace:^",
+    "@types/node": "^22.13.10",
+    "@types/pg": "^8",
+    "dotenv": "^16.4.7",
+    "drizzle-kit": "^0.30.5",
+    "eslint": "9.22.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-sql": "^0.18.1",
+    "prettier-plugin-toml": "^2.0.2",
+    "typescript": "^5.8.2"
+  },
+  "optionalDependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "pg": "^8.13.3",
+    "postgres": "^3.4.5"
+  },
+  "peerDependencies": {
+    "@neondatabase/serverless": "*",
+    "pg": "*",
+    "postgres": "*"
+  },
+  "peerDependenciesMeta": {
+    "@neondatabase/serverless": {
+      "optional": true
+    },
+    "pg": {
+      "optional": true
+    },
+    "postgres": {
+      "optional": true
+    }
+  }
+}
