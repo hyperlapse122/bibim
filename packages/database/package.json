@@ -9,7 +9,7 @@
     "lint": "eslint",
     "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
     "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate"
+    "migrate": "drizzle-kit migrate --config drizzle.config.ts"
   },
   "exports": {
     "./schemas/*": {
