@@ -4,11 +4,11 @@ import {
   type DownloadAudioRequest,
   DownloadAudioResponseSchema,
 } from '@bibim/protos/v1/audio_loader_pb';
-import ffmpeg from 'fluent-ffmpeg';
-import { Duplex, PassThrough } from 'node:stream';
+import { PassThrough } from 'node:stream';
 import type { MessageInitShape } from '@bufbuild/protobuf';
 import { pipeline } from 'stream';
 import { spawn } from 'child_process';
+import ffmpegTransform from '../utils/ffmpeg-transform';
 
 export class AudioLoaderServiceImpl
   implements ServiceImpl<typeof AudioLoaderService>
@@ -28,7 +28,7 @@ export class AudioLoaderServiceImpl
       ytDlpProcess.on('exit', (code) => {
         console.log('yt-dlp:', 'yt-dlp Process exited with code:', code);
       });
-      const transform = getFfmpegTransform();
+      const transform = ffmpegTransform();
 
       const destination = pipeline(
         ytDlpProcess.stdout,
@@ -48,34 +48,4 @@ export class AudioLoaderServiceImpl
       console.error(e);
     }
   }
-}
-
-// Returns a Duplex stream whose input and output are connected (basically a Transform)
-//
-function getFfmpegTransform() {
-  const input = new PassThrough();
-  const output = new PassThrough();
-
-  ffmpeg({
-    logger: console,
-  })
-    .on('stderr', function (stderrLine) {
-      console.log('FFmpeg Stderr output: ' + stderrLine);
-    })
-    .input(input)
-    .toFormat('opus')
-    .withAudioCodec('libopus')
-    .outputOption('-af', 'loudnorm=I=-16:TP=-1.5:LRA=11')
-    .outputOption('-ar', '48000')
-    .outputOption('-ac', '2')
-    .audioBitrate('384k')
-    .output(output)
-    .run();
-
-  return Duplex.from({
-    // previous stream writes to input
-    writable: input,
-    // the next stream reads from output
-    readable: output,
-  });
 }
