@@ -21,6 +21,7 @@
     "verbatimModuleSyntax": true
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./examples/**/*"
   ]
 }
