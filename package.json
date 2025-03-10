@@ -1,13 +1,16 @@
 {
   "name": "bibim",
   "packageManager": "yarn@4.7.0",
+  "private": true,
   "type": "module",
+  "prettier": "@bibim/prettier-config",
   "scripts": {
     "build": "turbo run build",
     "format": "turbo run format format:root",
     "format:root": "prettier -w .",
     "lint": "turbo run lint lint:root",
-    "lint:root": "eslint"
+    "lint:root": "eslint .",
+    "migrate": "turbo run migrate"
   },
   "workspaces": [
     "apps/*",
@@ -18,6 +21,8 @@
     "@bibim/prettier-config": "workspace:^",
     "eslint": "9.22.0",
     "prettier": "3.5.3",
+    "prettier-plugin-sql": "^0.18.1",
+    "prettier-plugin-toml": "^2.0.2",
     "turbo": "^2.4.4"
   }
 }
